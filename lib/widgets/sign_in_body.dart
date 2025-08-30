@@ -1,7 +1,10 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/firebase_auth/register_view.dart';
+import 'package:ecommerce_app/widgets/check_have_account_message.dart';
 import 'package:ecommerce_app/widgets/custom_button.dart';
+import 'package:ecommerce_app/widgets/custom_elevated_button.dart';
 import 'package:ecommerce_app/widgets/custom_text_field.dart';
+import 'package:ecommerce_app/widgets/custom_welcome_widget.dart';
 import 'package:flutter/material.dart';
 
 class SignInBody extends StatelessWidget {
@@ -16,76 +19,25 @@ class SignInBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
-            Image.asset("assets/images/route_logo.png"),
-            SizedBox(height: 40),
-            Text(
-              "Welcome Back To Route",
-              style: TextStyle(
-                fontSize: 24,
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Text(
-              "Please sign in with your email",
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+            CustomWelcomeWidget(),
             SizedBox(height: 40),
             CustomTextField(hint: "enter your name", label: "User Name"),
             SizedBox(height: 32),
             CustomTextField(hint: "enter your password", label: "Password"),
             SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Forgot Password",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 50),
-            CustomButton(textButton: "Login",),
-            SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Don't have an account?",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterView()));
-                  },
-                  child: Text(
-                    "Create Account",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              ],
+            CustomButton(text: "Forgot Password", onTap: () {}),
+            SizedBox(height: 40),
+            CustomElevatedButton(textButton: "Login"),
+            SizedBox(height: 15),
+            CheckHaveAccountMessage(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegisterView()),
+                );
+              },
+              text: "Don't have an account?",
+              textButton: "Create Account",
             ),
           ],
         ),

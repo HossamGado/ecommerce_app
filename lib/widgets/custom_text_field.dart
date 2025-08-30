@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({super.key, required this.label, required this.hint});
+
   final String label;
   final String hint;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,9 +26,7 @@ class CustomTextField extends StatelessWidget {
               hint,
               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18),
             ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             filled: true,
             fillColor: Colors.white,
           ),

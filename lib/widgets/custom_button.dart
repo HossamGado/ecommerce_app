@@ -1,26 +1,26 @@
-import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
-class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.textButton});
-  final String textButton;
 
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key, required this.text, required this.onTap});
+  final String text;
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
-      width: double.infinity,
-      height: 50,
-      child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius:BorderRadius.circular(12),
-              )
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        TextButton(
+          onPressed: onTap,
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w400,
+            ),
           ),
-          onPressed: () {}, child: Text(textButton,style: TextStyle(
-          color: kPrimaryColor,
-          fontWeight: FontWeight.w600,
-          fontSize: 20
-      ),)),
+        ),
+      ],
     );
   }
 }
