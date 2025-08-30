@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constants.dart';
+import 'package:ecommerce_app/firebase_auth/register_view.dart';
 import 'package:ecommerce_app/widgets/custom_button.dart';
 import 'package:ecommerce_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class SignInBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 40),
+            SizedBox(height: 20),
             Image.asset("assets/images/route_logo.png"),
             SizedBox(height: 40),
             Text(
@@ -35,9 +36,9 @@ class SignInBody extends StatelessWidget {
               ),
             ),
             SizedBox(height: 40),
-            CustomTextField(hint: "enter your name",label: "User Name",),
+            CustomTextField(hint: "enter your name", label: "User Name"),
             SizedBox(height: 32),
-            CustomTextField(hint: "enter your password",label: "Password",),
+            CustomTextField(hint: "enter your password", label: "Password"),
             SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -56,7 +57,36 @@ class SignInBody extends StatelessWidget {
               ],
             ),
             SizedBox(height: 50),
-            CustomButton(),
+            CustomButton(textButton: "Login",),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Don't have an account?",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterView()));
+                  },
+                  child: Text(
+                    "Create Account",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

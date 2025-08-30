@@ -1,10 +1,8 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
-
-
-
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
+  const CustomButton({super.key, required this.textButton});
+  final String textButton;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +16,7 @@ class CustomButton extends StatelessWidget {
                 borderRadius:BorderRadius.circular(12),
               )
           ),
-          onPressed: () {}, child: Text("Login",style: TextStyle(
+          onPressed: () {}, child: Text(textButton,style: TextStyle(
           color: kPrimaryColor,
           fontWeight: FontWeight.w600,
           fontSize: 20
