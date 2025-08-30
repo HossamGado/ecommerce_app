@@ -1,13 +1,14 @@
+import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return  SizedBox(
       width: double.infinity,
       height: 50,
       child: ElevatedButton(
