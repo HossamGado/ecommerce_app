@@ -3,54 +3,136 @@ import 'package:ecommerce_app/firebase_auth/sign_in_view.dart';
 import 'package:ecommerce_app/widgets/check_have_account_message.dart';
 import 'package:ecommerce_app/widgets/custom_elevated_button.dart';
 import 'package:ecommerce_app/widgets/custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class SignUpBody extends StatelessWidget {
-  const SignUpBody({super.key});
+class SignUpBody extends StatefulWidget {
+  SignUpBody({super.key});
+
+  @override
+  State<SignUpBody> createState() => _SignUpBodyState();
+}
+
+class _SignUpBodyState extends State<SignUpBody> {
+  TextEditingController fullName = TextEditingController();
+
+  TextEditingController mobile = TextEditingController();
+
+  TextEditingController emailAddress = TextEditingController();
+
+  TextEditingController password = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey();
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kPrimaryColor,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 20),
-              Image.asset("assets/images/route_logo.png"),
-              SizedBox(height: 20),
-              CustomTextField(hint: "enter your full name", label: "Full Name"),
-              SizedBox(height: 32),
-              CustomTextField(
-                hint: "enter your mobile no.",
-                label: "Mobile Number",
+    return ModalProgressHUD(
+      inAsyncCall: isLoading,
+      child: Scaffold(
+        backgroundColor: kPrimaryColor,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SingleChildScrollView(
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20),
+                  Image.asset("assets/images/route_logo.png"),
+                  SizedBox(height: 20),
+                  CustomTextFormField(
+                    controller: fullName,
+                    onChanged: (data) {
+                      fullName.text = data;
+                    },
+                    hint: "enter your full name",
+                    label: "Full Name",
+                  ),
+                  SizedBox(height: 32),
+                  CustomTextFormField(
+                    controller: mobile,
+                    onChanged: (data) {
+                      mobile.text = data;
+                    },
+                    hint: "enter your mobile no.",
+                    label: "Mobile Number",
+                  ),
+                  SizedBox(height: 32),
+                  CustomTextFormField(
+                    controller: emailAddress,
+                    onChanged: (data) {
+                      emailAddress.text = data;
+                    },
+                    hint: "enter your email address",
+                    label: "E-mail address",
+                  ),
+                  SizedBox(height: 32),
+                  CustomTextFormField(
+                    controller: password,
+                    onChanged: (data) {
+                      password.text = data;
+                    },
+                    hint: "enter your password",
+                    label: "Password",
+                  ),
+                  SizedBox(height: 40),
+                  CustomElevatedButton(
+                    textButton: "Sign up",
+                    onTap: onSignUpClicked,
+                  ),
+                  SizedBox(height: 15),
+                  CheckHaveAccountMessage(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignInView()),
+                      );
+                    },
+                    text: "Already have an account",
+                    textButton: "Sign In",
+                  ),
+                ],
               ),
-              SizedBox(height: 32),
-              CustomTextField(
-                hint: "enter your email address",
-                label: "E-mail address",
-              ),
-              SizedBox(height: 32),
-              CustomTextField(hint: "enter your password", label: "Password"),
-              SizedBox(height: 40),
-              CustomElevatedButton(textButton: "Sign up"),
-              SizedBox(height: 15),
-              CheckHaveAccountMessage(
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignInView()),
-                  );
-                },
-                text: "Already have an account",
-                textButton: "Sign In",
-              ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
+
+  Future<void> register() async {
+    UserCredential user = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(
+          email: emailAddress.text,
+          password: password.text,
+        );
+  }
+  Future<void>onSignUpClicked()async{
+    if (formKey.currentState!.validate()) {
+      try {
+        isLoading = true;
+        setState(() {});
+        await register();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SignInView(),
+          ),
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          print('No user found for that email.');
+        } else if (e.code == 'wrong-password') {
+          print('Wrong password provided for that user.');
+        }
+      } catch (e) {
+        print(e);
+      }
+      isLoading = false;
+      setState(() {});
+    }
+}
+
 }
