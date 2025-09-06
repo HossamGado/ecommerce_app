@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/firebase_auth/sign_in_view.dart';
+import 'package:ecommerce_app/firebase_auth/views/sign_in_view.dart';
 import 'package:ecommerce_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

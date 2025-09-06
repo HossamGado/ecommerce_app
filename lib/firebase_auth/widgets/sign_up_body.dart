@@ -1,14 +1,14 @@
 import 'package:ecommerce_app/constants.dart';
-import 'package:ecommerce_app/firebase_auth/sign_in_view.dart';
-import 'package:ecommerce_app/widgets/check_have_account_message.dart';
-import 'package:ecommerce_app/widgets/custom_elevated_button.dart';
-import 'package:ecommerce_app/widgets/custom_text_field.dart';
+import 'package:ecommerce_app/firebase_auth/views/sign_in_view.dart';
+import 'package:ecommerce_app/firebase_auth/widgets/check_have_account_message.dart';
+import 'package:ecommerce_app/firebase_auth/widgets/custom_elevated_button.dart';
+import 'package:ecommerce_app/firebase_auth/widgets/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignUpBody extends StatefulWidget {
-  SignUpBody({super.key});
+  const SignUpBody({super.key});
 
   @override
   State<SignUpBody> createState() => _SignUpBodyState();
@@ -16,11 +16,8 @@ class SignUpBody extends StatefulWidget {
 
 class _SignUpBodyState extends State<SignUpBody> {
   TextEditingController fullName = TextEditingController();
-
   TextEditingController mobile = TextEditingController();
-
   TextEditingController emailAddress = TextEditingController();
-
   TextEditingController password = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
   bool isLoading = false;
@@ -103,36 +100,31 @@ class _SignUpBodyState extends State<SignUpBody> {
   }
 
   Future<void> register() async {
-    UserCredential user = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(
-          email: emailAddress.text,
-          password: password.text,
-        );
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: emailAddress.text,
+      password: password.text,
+    );
   }
-  Future<void>onSignUpClicked()async{
+
+  Future<void> onSignUpClicked() async {
     if (formKey.currentState!.validate()) {
+      final navigator = Navigator.of(context);
       try {
         isLoading = true;
         setState(() {});
         await register();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SignInView(),
-          ),
-        );
+        navigator.push(MaterialPageRoute(builder: (context) => SignInView()));
       } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          print('No user found for that email.');
-        } else if (e.code == 'wrong-password') {
-          print('Wrong password provided for that user.');
+        if (e.code == 'weak-password') {
+          debugPrint('The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          debugPrint('The account already exists for that email.');
         }
       } catch (e) {
-        print(e);
+        debugPrint(e.toString());
       }
       isLoading = false;
       setState(() {});
     }
-}
-
+  }
 }
