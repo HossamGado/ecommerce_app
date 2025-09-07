@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/firebase_auth/views/sign_in_view.dart';
 import 'package:ecommerce_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +9,8 @@ void main()async {
   );
   runApp(EcommerceApp());
 }
-
 class EcommerceApp extends StatelessWidget {
   const EcommerceApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +18,7 @@ class EcommerceApp extends StatelessWidget {
         fontFamily: "Poppins",
       ),
       debugShowCheckedModeBanner: false,
-        home: SignInView(),
+        home: Scaffold()
     );
   }
 }
