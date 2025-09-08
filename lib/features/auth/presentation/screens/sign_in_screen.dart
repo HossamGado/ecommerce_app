@@ -82,9 +82,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   CustomElevatedButton(
                     label: 'Login',
                     backgroundColor: ColorManager.white,
-                    textStyle: getBoldStyle(
+                    textStyle: getSemiBoldStyle(
                       color: ColorManager.primary,
-                      fontSize: AppSize.s18,
+                      fontSize: AppSize.s20,
                     ),
                     onPressed: () {
                       Navigator.pushNamedAndRemoveUntil(
@@ -99,7 +99,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an account?",
+                        "Don't have an account? ",
                         style: getMediumStyle(
                           color: ColorManager.white,
                         ).copyWith(fontSize: AppSize.s18),
