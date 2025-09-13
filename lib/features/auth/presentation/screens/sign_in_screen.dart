@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/config/routes_manager/routes.dart';
 import 'package:ecommerce_app/core/utils/assets_manager.dart';
 import 'package:ecommerce_app/core/utils/color_manager.dart';
+import 'package:ecommerce_app/core/utils/enums.dart';
 import 'package:ecommerce_app/core/utils/styles_manager.dart';
 import 'package:ecommerce_app/core/utils/values_manager.dart';
 import 'package:ecommerce_app/core/utils/widgets/build_text_field.dart';

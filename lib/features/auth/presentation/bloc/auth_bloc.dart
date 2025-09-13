@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ecommerce_app/core/utils/enums.dart';
 import 'package:ecommerce_app/features/auth/domain/usecases/login_usecase.dart';
 
 part 'auth_event.dart';

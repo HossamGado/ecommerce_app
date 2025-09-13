@@ -25,4 +25,3 @@ class AuthLoginInit extends AuthLoginState {
     : super(requestState: RequestState.init, loggedIn: false, errorMessage: "");
 }
 
-enum RequestState { init, loading, success, failure }

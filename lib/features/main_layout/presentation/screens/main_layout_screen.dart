@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class MainLayoutScreen extends StatelessWidget {
@@ -5,6 +6,6 @@ class MainLayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(appBar: const CustomAppBar());
   }
 }
