@@ -17,17 +17,12 @@ class CustomCategoryWidget extends StatelessWidget {
             width: 100.w,
             height: 100.h,
             decoration: BoxDecoration(shape: BoxShape.circle),
-            child: Image.asset(
-              ImageAssets.categoryHomeImage,
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset(ImageAssets.categoryHomeImage, fit: BoxFit.cover),
           ),
+
         ),
-        SizedBox(height: 8.h),
-        Text(
-          "men's fashion",
-          style: getRegularStyle(color: ColorManager.darkBlue, fontSize: 14.sp),
-        ),
+        SizedBox(height: 8.h,),
+        Text("men's fashion",style: getRegularStyle(color: ColorManager.darkBlue,fontSize: 14),),
       ],
     );
   }

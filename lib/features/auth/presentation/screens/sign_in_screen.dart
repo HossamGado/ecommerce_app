@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/config/routes_manager/routes.dart';
+import 'package:ecommerce_app/core/api/api_manager.dart';
 import 'package:ecommerce_app/core/utils/assets_manager.dart';
 import 'package:ecommerce_app/core/utils/color_manager.dart';
 import 'package:ecommerce_app/core/utils/enums.dart';
@@ -9,6 +10,7 @@ import 'package:ecommerce_app/core/utils/widgets/custom_elevated_buttom.dart';
 import 'package:ecommerce_app/features/auth/data/data_source/reomte/auth_remote_ds_impl.dart';
 import 'package:ecommerce_app/features/auth/data/repository/auth_repo_impl.dart';
 import 'package:ecommerce_app/features/auth/domain/usecases/login_usecase.dart';
+import 'package:ecommerce_app/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:ecommerce_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,8 +32,16 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          AuthBloc(LoginUseCase(AuthRepoImpl(AuthRemoteDsImpl()))),
+      create: (context) => AuthBloc(
+        LoginUseCase(AuthRepoImpl(AuthRemoteDsImpl(ApiManager(),
+        ),
+        ),
+        ),
+        SignUpUseCase(AuthRepoImpl(AuthRemoteDsImpl(ApiManager(),
+        ),
+        ),
+        ),
+      ),
       child: BlocConsumer<AuthBloc, AuthLoginState>(
         listener: (context, state) {
           if (state.requestState == RequestState.success) {
@@ -39,6 +49,15 @@ class _SignInScreenState extends State<SignInScreen> {
               context,
               Routes.mainRoute,
               (context) => false,
+            );
+          }
+          if (state.requestState == RequestState.failure) {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text("Error"),
+                content: Text(state.errorMessage ?? ""),
+              ),
             );
           }
         },
