@@ -9,5 +9,6 @@ class SignUpUseCase {
 
   SignUpUseCase(this.repo);
 
-  Future<Either<RouteFailures,UserModel>> call(SignUpEntity signUpEntity) => repo.signUp(signUpEntity);
+  Future<Either<RouteFailures, UserModel>> call(SignUpEntity signUpEntity) =>
+      repo.signUp(signUpEntity);
 }

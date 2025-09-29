@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/api/api_manager.dart';
 import 'package:ecommerce_app/core/api/end_points.dart';
 import 'package:ecommerce_app/core/api/status_code.dart';
+import 'package:ecommerce_app/core/cache/shared_pref.dart';
 import 'package:ecommerce_app/core/exceptions/exceptions.dart';
 import 'package:ecommerce_app/features/auth/data/data_source/reomte/auth_remote_ds.dart';
 import 'package:ecommerce_app/features/auth/data/models/user_model.dart';
@@ -20,6 +21,8 @@ class AuthRemoteDsImpl implements AuthRemoteDs {
         body: {"email": email, "password": password},
       );
       if (response.statusCode == StatusCode.success) {
+        print(response.data["token"]);
+        await CacheHelper.setData<String>("token", response.data["token"]);
         return true;
       } else {
         return false;

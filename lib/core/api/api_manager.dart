@@ -1,11 +1,22 @@
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/utils/constants_manager.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiManager {
   late Dio dio;
 
   ApiManager(){
     dio=Dio();
+    
+    dio.interceptors.add(PrettyDioLogger(
+      requestBody: true,
+      requestHeader: true,
+      responseBody: true,
+      responseHeader: false,
+      compact: true,
+      error: true,
+
+    ));
   }
 
   Future<Response> getData({

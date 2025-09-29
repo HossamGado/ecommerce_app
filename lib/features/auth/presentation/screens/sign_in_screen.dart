@@ -133,11 +133,11 @@ class _SignInScreenState extends State<SignInScreen> {
                                 passwordController.text,
                               ),
                             );
-                            // Navigator.pushNamedAndRemoveUntil(
-                            //   context,
-                            //   Routes.mainRoute,
-                            //   (route) => false,
-                            // );
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              Routes.mainRoute,
+                              (route) => false,
+                            );
                           },
                         ),
                         const SizedBox(height: 32),
