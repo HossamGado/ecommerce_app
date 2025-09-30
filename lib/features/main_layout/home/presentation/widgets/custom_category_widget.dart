@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomCategoryWidget extends StatelessWidget {
-  Data categoryData;
-   CustomCategoryWidget({required this.categoryData,super.key});
+  final Data categoryData;
+  const  CustomCategoryWidget({required this.categoryData,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,6 @@ class CustomCategoryWidget extends StatelessWidget {
             );
           },
         ),
-
         SizedBox(height: 8.h),
         Text(
           categoryData.name??"",

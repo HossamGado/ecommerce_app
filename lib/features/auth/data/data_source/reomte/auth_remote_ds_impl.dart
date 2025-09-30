@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/api/api_manager.dart';
 import 'package:ecommerce_app/core/api/end_points.dart';
 import 'package:ecommerce_app/core/api/status_code.dart';

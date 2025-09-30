@@ -2,9 +2,6 @@ import 'dart:async';
 
 import 'package:ecommerce_app/core/api/api_manager.dart';
 import 'package:ecommerce_app/core/utils/assets_manager.dart';
-import 'package:ecommerce_app/core/utils/color_manager.dart';
-import 'package:ecommerce_app/core/utils/styles_manager.dart';
-import 'package:ecommerce_app/core/utils/values_manager.dart';
 import 'package:ecommerce_app/features/main_layout/categories/data/data_source/category_ds_impl.dart';
 import 'package:ecommerce_app/features/main_layout/categories/data/repository/category_repo_impl.dart';
 import 'package:ecommerce_app/features/main_layout/categories/domain/usecases/get_category_usecase.dart';
