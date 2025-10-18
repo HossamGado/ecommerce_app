@@ -84,7 +84,7 @@ class _BuildTextFieldState extends State<BuildTextField> {
             },
             controller: widget.controller,
             style: getMediumStyle(
-              color: ColorManager.black,
+              color: ColorManager.primaryDark,
             ).copyWith(fontSize: FontSize.s18.sp),
             obscureText: hidden,
             keyboardType: widget.textInputType,
