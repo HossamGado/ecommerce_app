@@ -26,34 +26,38 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: currentIndex==3?null: const CustomAppBar(),
       extendBody: true,
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(15),
           topRight: Radius.circular(15),
         ),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.1,
-          child: BottomNavigationBar(
-            onTap: (value) => changeSelectedIndex(value),
-            currentIndex: currentIndex,
-            backgroundColor: ColorManager.primary,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: ColorManager.primary,
-            unselectedItemColor: ColorManager.white,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            items: [
-              CustomBottomNavBarItem("Home", IconsAssets.icHome),
-              CustomBottomNavBarItem("Category", IconsAssets.icCategory),
-              CustomBottomNavBarItem("WishList", IconsAssets.icWithList),
-              CustomBottomNavBarItem("Profile", IconsAssets.icProfile)
-            ],
-
+        child: Container(
+          color: ColorManager.primary,
+          child: SafeArea(
+            top: false,
+            child: BottomNavigationBar(
+              elevation: 0,
+              onTap: (value) => changeSelectedIndex(value),
+              currentIndex: currentIndex,
+              backgroundColor: ColorManager.transparent,
+              type: BottomNavigationBarType.fixed,
+              selectedItemColor: ColorManager.primary,
+              unselectedItemColor: ColorManager.white,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              items: [
+                CustomBottomNavBarItem("Home", IconsAssets.icHome),
+                CustomBottomNavBarItem("Category", IconsAssets.icCategory),
+                CustomBottomNavBarItem("WishList", IconsAssets.icWithList),
+                CustomBottomNavBarItem("Profile", IconsAssets.icProfile),
+              ],
+            ),
           ),
         ),
       ),
+
       body: tabs[currentIndex],
     );
   }

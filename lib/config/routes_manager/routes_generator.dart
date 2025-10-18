@@ -2,9 +2,9 @@ import 'package:ecommerce_app/config/routes_manager/routes.dart';
 import 'package:ecommerce_app/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:ecommerce_app/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:ecommerce_app/features/cart/presentation/screens/cart_screen.dart';
-import 'package:ecommerce_app/features/main_layout/presentation/screens/main_layout_screen.dart';
+import 'package:ecommerce_app/features/main_layout/main_layout_screen.dart';
 import 'package:ecommerce_app/features/product_details/presentation/screens/product_details.dart';
-import 'package:ecommerce_app/features/products/presentation/screens/products_screen.dart';
+import 'package:ecommerce_app/features/products_screen/presentation/screens/products_screen.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -19,7 +19,7 @@ class RouteGenerator {
       case Routes.productDetails:
         return MaterialPageRoute(builder: (context) => const ProductDetails());
       case Routes.productScreenRoute:
-        return MaterialPageRoute(builder: (context) => const ProductsScreen());
+        return MaterialPageRoute(builder: (context) =>  ProductsScreen(catId: settings.arguments as String?,));
       case Routes.signInRoute:
         return MaterialPageRoute(builder: (context) => const SignInScreen());
       case Routes.signUpRoute:

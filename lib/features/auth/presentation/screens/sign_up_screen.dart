@@ -6,7 +6,7 @@ import 'package:ecommerce_app/core/utils/styles_manager.dart';
 import 'package:ecommerce_app/core/utils/values_manager.dart';
 import 'package:ecommerce_app/core/utils/widgets/build_text_field.dart';
 import 'package:ecommerce_app/core/utils/widgets/custom_elevated_buttom.dart';
-import 'package:ecommerce_app/features/auth/data/data_source/reomte/auth_remote_ds_impl.dart';
+import 'package:ecommerce_app/features/auth/data/data_source/remote/auth_remote_ds_impl.dart';
 import 'package:ecommerce_app/features/auth/data/repository/auth_repo_impl.dart';
 import 'package:ecommerce_app/features/auth/domain/entity/sign_up_entity.dart';
 import 'package:ecommerce_app/features/auth/domain/usecases/login_usecase.dart';

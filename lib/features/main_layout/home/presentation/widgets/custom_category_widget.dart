@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/core/utils/color_manager.dart';
 import 'package:ecommerce_app/core/utils/styles_manager.dart';
-import 'package:ecommerce_app/features/main_layout/categories/data/models/category_model.dart';
+import 'package:ecommerce_app/features/main_layout/home/data/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomCategoryWidget extends StatelessWidget {
-  final Data categoryData;
+  final CategoryData categoryData;
   const  CustomCategoryWidget({required this.categoryData,super.key});
 
   @override

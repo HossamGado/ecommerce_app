@@ -1,21 +1,19 @@
 import 'package:ecommerce_app/core/api/api_manager.dart';
 import 'package:ecommerce_app/core/api/end_points.dart';
-import 'package:ecommerce_app/core/exceptions/exceptions.dart';
-import 'package:ecommerce_app/features/main_layout/categories/data/data_source/category_ds.dart';
-import 'package:ecommerce_app/features/main_layout/categories/data/models/category_model.dart';
+import 'package:ecommerce_app/di.dart';
+import 'package:ecommerce_app/features/main_layout/home/data/models/category_model.dart';
+import 'package:injectable/injectable.dart';
 
+import 'category_ds.dart';
+
+@Injectable(as: CategoryDs)
 class CategoryDsImpl implements CategoryDs {
-  ApiManager apiManager;
-  CategoryDsImpl(this.apiManager);
   @override
-  Future<CategoryModel> getaCategories()async{
-    try {
-      var response=await apiManager.getData(endPoints: EndPoints.category);
-      CategoryModel categoryModel=CategoryModel.fromJson(response.data);
-      return categoryModel;
-      
-    } catch (e) {
-      throw RouteRemoteException(e.toString());
-    }
+  Future<CategoryModel> getSubCategories(String catId) async {
+    var response = await getIt<ApiManager>().getData(
+      endPoints: "${EndPoints.category}/$catId/subcategories",
+    );
+    CategoryModel subCatModel = CategoryModel.fromJson(response.data);
+    return subCatModel;
   }
 }

@@ -1,12 +1,8 @@
 import 'dart:async';
-
-import 'package:ecommerce_app/core/api/api_manager.dart';
 import 'package:ecommerce_app/core/utils/assets_manager.dart';
-import 'package:ecommerce_app/features/main_layout/categories/data/data_source/category_ds_impl.dart';
-import 'package:ecommerce_app/features/main_layout/categories/data/repository/category_repo_impl.dart';
-import 'package:ecommerce_app/features/main_layout/categories/domain/usecases/get_category_usecase.dart';
-import 'package:ecommerce_app/features/main_layout/categories/presentation/bloc/category_bloc.dart';
-import 'package:ecommerce_app/features/main_layout/categories/presentation/bloc/category_state.dart';
+import 'package:ecommerce_app/di.dart';
+import 'package:ecommerce_app/features/main_layout/home/presentation/bloc/home_bloc.dart';
+import 'package:ecommerce_app/features/main_layout/home/presentation/bloc/home_state.dart';
 import 'package:ecommerce_app/features/main_layout/home/presentation/widgets/custom_ads_widget.dart';
 import 'package:ecommerce_app/features/main_layout/home/presentation/widgets/custom_category_widget.dart';
 import 'package:ecommerce_app/features/main_layout/home/presentation/widgets/custom_section_bar.dart';
@@ -54,10 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CategoryBloc(
-        GetCategoryUseCase(CategoryRepoImpl(CategoryDsImpl(ApiManager()))),
-      )..add(GetCategoryEvent()),
-      child: BlocConsumer<CategoryBloc, CategoryState>(
+      create: (context) => getIt<HomeBloc>()..add(GetCategoryEvent()),
+      child: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
 
         },

@@ -6,7 +6,8 @@ import 'package:ecommerce_app/core/exceptions/exceptions.dart';
 import 'package:ecommerce_app/features/auth/data/data_source/remote/auth_remote_ds.dart';
 import 'package:ecommerce_app/features/auth/data/models/user_model.dart';
 import 'package:ecommerce_app/features/auth/domain/entity/sign_up_entity.dart';
-
+import 'package:injectable/injectable.dart';
+@Injectable(as:AuthRemoteDs )
 class AuthRemoteDsImpl implements AuthRemoteDs {
   ApiManager apiManager;
 
